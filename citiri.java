@@ -7,6 +7,22 @@ import java.util.List;
 
 public class git {
 
+        public static List<Pacient> citireText(String caleFisier) throws FileNotFoundException {
+        List<Pacient> rezultat = new ArrayList<>();
+        try(Scanner scannerFisier = new Scanner(new File(caleFisier)))
+        {
+            while(scannerFisier.hasNext())
+            {
+                String linie = scannerFisier.nextLine();
+
+                Scanner scannerLinie = new Scanner(linie);
+                scannerLinie.useDelimiter(",");
+                rezultat.add(new Pacient(scannerLinie.nextLong(),scannerLinie.next(),scannerLinie.nextInt(),scannerLinie.nextInt()));
+            }
+        }
+        return rezultat;
+    }
+    
     public static List<Sectie> citireJSON(String caleFisier) {
         List<Sectie> rezultat = new ArrayList<>();
 
